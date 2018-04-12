@@ -1,8 +1,9 @@
-'use strict'
 
 class Subscription {
   constructor() {
-    this.frequency = ""
+    this.frequency = []
     this.channel   = []
   }
 }
+
+module.exports = Subscription
