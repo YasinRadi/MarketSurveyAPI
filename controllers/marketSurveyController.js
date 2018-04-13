@@ -9,15 +9,16 @@ class MarketSurveyController {
    * @returns {MarketSurvey[]}  filteredSurveys
    */
   static filterSurveys(surveys, surveyRequest) {
+    const inner = MarketSurveyController
     return surveys
-            .filter(s => MarketSurveyController.filterSurveyBySubject(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByGender(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByAge(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByCurrency(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByIncome(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByCountry(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByFrequency(s, surveyRequest))
-            .filter(s => MarketSurveyController.filterSurveyByChannel(s, surveyRequest))
+            .filter(s => inner.filterSurveyBySubject(s, surveyRequest))
+            .filter(s => inner.filterSurveyByGender(s, surveyRequest))
+            .filter(s => inner.filterSurveyByAge(s, surveyRequest))
+            .filter(s => inner.filterSurveyByCurrency(s, surveyRequest))
+            .filter(s => inner.filterSurveyByIncome(s, surveyRequest))
+            .filter(s => inner.filterSurveyByCountry(s, surveyRequest))
+            .filter(s => inner.filterSurveyByFrequency(s, surveyRequest))
+            .filter(s => inner.filterSurveyByChannel(s, surveyRequest))
   }
 
   /**
@@ -28,9 +29,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyBySubject(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.subject) return true
-    survey.content.survey.subject.some(
-      s => surveyRequest.content.survey.subject.includes(s)
+    if(!surveyRequest.getSubject()) return true
+    survey.getSubject().some(
+      s => surveyRequest.getSubject().includes(s)
     )
   }
 
@@ -42,9 +43,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByGender(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.target.gender) return true
-    survey.content.survey.target.gender.some(
-      s => surveyRequest.content.survey.target.gender.includes(s)
+    if(!surveyRequest.getGender()) return true
+    survey.getGender().some(
+      s => surveyRequest.getGender().includes(s)
     )
   }
   
@@ -56,13 +57,13 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByAge(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.target.age) return true
-    if(surveyRequest.content.survey.target.age.length < 2) {
-      return survey.content.survey.target.age[0] == surveyRequest.content.survey.target.age[0]
+    if(!surveyRequest.getAge()) return true
+    if(surveyRequest.getAge().length < 2) {
+      return survey.getAge()[0] == surveyRequest.getAge()[0]
     } else {
       return (
-        survey.content.survey.target.age[0] >= surveyRequest.content.survey.target.age[0]
-        && survey.content.survey.target.age[0] <= surveyRequest.content.survey.target.age[1]
+        survey.getAge()[0] >= surveyRequest.getAge()[0]
+        && survey.getAge()[0] <= surveyRequest.getAge()[1]
       )
     }
   }
@@ -75,9 +76,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByCurrency(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.target.income.currency) return true
-    survey.content.survey.target.income.currency.some(
-      s => survey.content.survey.target.income.currency.includes(s)
+    if(!surveyRequest.getCurrency()) return true
+    survey.getCurrency().some(
+      s => survey.getCurrency().includes(s)
     )
   }
 
@@ -89,13 +90,13 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByIncome(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.target.income.value) return true
-    if(surveyRequest.content.survey.target.income.value.length < 2) {
-      return survey.content.survey.target.income.value[0] == surveyRequest.content.survey.target.income.value[0]
+    if(!surveyRequest.getIncome()) return true
+    if(surveyRequest.getIncome().length < 2) {
+      return survey.getIncome()[0] == surveyRequest.getIncome()[0]
     } else {
       return (
-        survey.content.survey.target.income.value[0] >= surveyRequest.content.survey.target.income.value[0]
-        && survey.content.survey.target.income.value[0] <= surveyRequest.content.survey.target.income.value[1]
+        survey.getIncome()[0] >= surveyRequest.getIncome()[0]
+        && survey.getIncome()[0] <= surveyRequest.getIncome()[1]
       )
     }
   }
@@ -108,9 +109,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByCountry(survey, surveyRequest) {
-    if(!surveyRequest.content.survey.country) return true
-    survey.content.survey.country.some(
-      s => survey.content.survey.country.includes(s)
+    if(!surveyRequest.getCountry()) return true
+    survey.getCountry().some(
+      s => survey.getCountry().includes(s)
     )
   }
 
@@ -122,9 +123,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByFrequency(survey, surveyRequest) {
-    if(!surveyRequest.content.subscription.frequency) return true
-    survey.content.subscription.frequency.some(
-      s => survey.content.subscription.frequency.includes(s)
+    if(!surveyRequest.getFrequency()) return true
+    survey.getFrequency().some(
+      s => survey.getFrequency().includes(s)
     )
   }
 
@@ -136,9 +137,9 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByChannel(survey, surveyRequest) {
-    if(!surveyRequest.content.subscription.channel) return true
-    survey.content.subscription.channel.some(
-      s => survey.content.subscription.channel.includes(s)
+    if(!surveyRequest.getChannel()) return true
+    survey.getChannel().some(
+      s => survey.getChannel().includes(s)
     )
   }
 
