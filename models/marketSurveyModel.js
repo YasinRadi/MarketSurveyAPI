@@ -8,12 +8,23 @@ const SubscriptionModel  = require('./subscriptionModel')
  */
 class MarketSurveyModel {
   constructor() { 
-    this.content = {
+    this._content = {
       requester: new RequesterModel(),
       provider: new ProviderModel(),
       survey: new SurveyContentModel(),
       subscription: new SubscriptionModel()
     }
+  }
+
+  /**
+   * Public properties.
+   */
+  get content() {
+    return this._content
+  }
+
+  set content(content) {
+    this._content = content
   }
 
   /**

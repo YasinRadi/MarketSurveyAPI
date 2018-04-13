@@ -4,8 +4,27 @@
  */
 class ProviderModel {
   constructor() {
-    this.id   = ""
-    this.name = ""
+    this._id   = ""
+    this._name = ""
+  }
+
+  /**
+   * Public properties.
+   */
+  get id(){
+    return this._id 
+  }
+
+  set id(id) {
+    this._id = id
+  }
+
+  get name() {
+    return this._name
+  }
+
+  set name(name) {
+    this._name = name
   }
 }
 
