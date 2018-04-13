@@ -1,12 +1,14 @@
-const MarketSurveyModel = require('../models/marketSurveyModel')
+const SurveyContainer = require('../models/surveyContainer')
+const LOADED_SURVEYS  = new SurveyContainer()
+
 
 class MarketSurveyController {
 
   /**
    * Filters the available surveys to fit user's request.
-   * @param   {MarketSurvey[]}  surveys 
-   * @param   {MarketSurvey}    surveyRequest 
-   * @returns {MarketSurvey[]}  filteredSurveys
+   * @param   {MarketSurveyModel[]}  surveys 
+   * @param   {MarketSurveyModel}    surveyRequest 
+   * @returns {MarketSurveyModel[]}  filteredSurveys
    */
   static filterSurveys(surveys, surveyRequest) {
     const inner = MarketSurveyController
@@ -24,8 +26,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the requested subjects.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyBySubject(survey, surveyRequest) {
@@ -38,8 +40,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the specified genders.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByGender(survey, surveyRequest) {
@@ -52,8 +54,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to the specified age range.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByAge(survey, surveyRequest) {
@@ -71,8 +73,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the specified currencies.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByCurrency(survey, surveyRequest) {
@@ -85,8 +87,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to the specified income range.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByIncome(survey, surveyRequest) {
@@ -104,8 +106,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the specified countries.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByCountry(survey, surveyRequest) {
@@ -118,8 +120,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the specified frequencies.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByFrequency(survey, surveyRequest) {
@@ -132,8 +134,8 @@ class MarketSurveyController {
   /**
    * Returns true if the survey checked belongs to one of the specified channels.
    * Returns true if the requester doesn't need this filter.
-   * @param   {MarketSurvey} survey 
-   * @param   {MarketSurvey} surveyRequest 
+   * @param   {MarketSurveyModel} survey 
+   * @param   {MarketSurveyModel} surveyRequest 
    * @returns {Boolean}
    */
   static filterSurveyByChannel(survey, surveyRequest) {
@@ -144,10 +146,27 @@ class MarketSurveyController {
   }
 
   /**
+   * 
+   */
+  static surveyList() {
+    return LOADED_SURVEYS.surveys
+  }
+
+  /**
    * Save the survey data into the surveys file.
    */
   static saveData() {
     // TODO
+  }
+
+  /**
+   * Load the available survey data from the surveys file.
+   * @param {MarketSurveyModel[]} surveyList 
+   */
+  static loadData(surveyList) {
+    // TODO
+
+    return surveyList
   }
 }
 
