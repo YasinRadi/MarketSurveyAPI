@@ -4,27 +4,20 @@
  */
 class RequesterModel {
   constructor() {
-    this.id = ""
+    this.id   = ""
     this.name = ""
   }
 
   /**
-   * Public properties.
+   * Converts raw data into RequesterModel Object.
+   * @param   {*} data 
+   * @return  {RequesterModel}
    */
-  get id(){
-    return this._id 
-  }
-
-  set id(id) {
-    this._id = id
-  }
-
-  get name() {
-    return this._name
-  }
-
-  set name(name) {
-    this._name = name
+  static construct(data) {
+    const obj = new RequesterModel()
+    obj.id = data.id
+    obj.name = data.name
+    return obj
   }
 }
 

@@ -4,8 +4,8 @@
  */
 class SurveyContentModel {
   constructor() {
-    this._subject = []
-    this._target  = {
+    this.subject = []
+    this.target  = {
       gender: [],
       age: [],
       income: {
@@ -13,34 +13,24 @@ class SurveyContentModel {
         value: []
       }
     }
-    this._country = []
+    this.country = []
   }
 
   /**
-   * Public properties.
+   * Converts raw data into SurveyContentModel Object.
+   * @param   {*} data 
+   * @return  {SurveyContentModel}
    */
-  get subject() {
-    return this._subject
-  }
+  static construct(data) {
+    const obj = new SurveyContentModel()
+    obj.subject = data.subject
+    obj.target.gender = data.target.gender
+    obj.target.age = data.target.age
+    obj.target.income.currency = data.target.income.currency
+    obj.target.income.value = data.target.income.value
+    obj.country = data.country
 
-  set subject(subject) {
-    this._subject = subject
-  }
-
-  get target() {
-    return this._target
-  }
-
-  set target(target) {
-    this._target = target
-  }
-
-  get country() {
-    return this._country
-  }
-
-  set country(country) {
-    this._country = country
+    return obj
   }
 }
 

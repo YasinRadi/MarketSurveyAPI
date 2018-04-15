@@ -18,4 +18,10 @@ const fh     = require('../lib/fileHandler')
     })
   })
 
+  describe('readDataFile', function() {
+    it('Returns null', function() {
+      assert.equal(fh.readDataFile(), null)
+    })
+  })
+
  })

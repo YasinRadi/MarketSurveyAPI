@@ -1,28 +1,21 @@
 
-class Subscription {
+class SubscriptionModel {
   constructor() {
-    this._frequency = []
-    this._channel   = []
+    this.frequency = []
+    this.channel   = []
   }
 
   /**
-   * Public properties.
+   * Converts raw data into SubscriptionModel Object.
+   * @param   {*} data 
+   * @return  {SubscriptionModel}
    */
-  get frequency() {
-    return this._frequency
-  }
-
-  set frequency(frequency) {
-    this._frequency = frequency
-  }
-
-  get channel() {
-    return this._channel
-  }
-
-  set channel(channel) {
-    this._channel = channel
+  static construct(data) {
+    const obj = new SubscriptionModel()
+    obj.frequency = data.frequency
+    obj.channel   = data.channel
+    return obj
   }
 }
 
-module.exports = Subscription
+module.exports = SubscriptionModel

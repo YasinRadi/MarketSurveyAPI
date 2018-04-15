@@ -1,9 +1,15 @@
-const SurveyContainer = require('../models/surveyContainer')
-const LOADED_SURVEYS  = new SurveyContainer()
-
+const SurveyContainer   = require('../models/surveyContainer')
+const MarketSurveyModel = require('../models/marketSurveyModel')
+const ProviderModel     = require('../models/providerModel')
+const RequesterModel    = require('../models/requesterModel')
+const SubscriptionModel = require('../models/subscriptionModel')
+const SurveyContentModel = require('../models/surveyContentModel')
+const fh = require('../lib/fileHandler')
+let LOADED_SURVEYS  = new SurveyContainer()
 
 class MarketSurveyController {
 
+  
   /**
    * Filters the available surveys to fit user's request.
    * @param   {MarketSurveyModel[]}  surveys 
@@ -11,16 +17,17 @@ class MarketSurveyController {
    * @returns {MarketSurveyModel[]}  filteredSurveys
    */
   static filterSurveys(surveys, surveyRequest) {
-    const inner = MarketSurveyController
+    const i = MarketSurveyController,
+    it = MarketSurveyModel
     return surveys
-            .filter(s => inner.filterSurveyBySubject(s, surveyRequest))
-            .filter(s => inner.filterSurveyByGender(s, surveyRequest))
-            .filter(s => inner.filterSurveyByAge(s, surveyRequest))
-            .filter(s => inner.filterSurveyByCurrency(s, surveyRequest))
-            .filter(s => inner.filterSurveyByIncome(s, surveyRequest))
-            .filter(s => inner.filterSurveyByCountry(s, surveyRequest))
-            .filter(s => inner.filterSurveyByFrequency(s, surveyRequest))
-            .filter(s => inner.filterSurveyByChannel(s, surveyRequest))
+            .filter(s => i.filterSurveyBySubject(s, surveyRequest))
+            .filter(s => i.filterSurveyByGender(s, surveyRequest))
+            .filter(s => i.filterSurveyByAge(s, surveyRequest))
+            .filter(s => i.filterSurveyByCurrency(s, surveyRequest))
+            .filter(s => i.filterSurveyByIncome(s, surveyRequest))
+            .filter(s => i.filterSurveyByCountry(s, surveyRequest))
+            .filter(s => i.filterSurveyByFrequency(s, surveyRequest))
+            .filter(s => i.filterSurveyByChannel(s, surveyRequest))
   }
 
   /**
@@ -31,9 +38,10 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyBySubject(survey, surveyRequest) {
-    if(!surveyRequest.getSubject()) return true
-    survey.getSubject().some(
-      s => surveyRequest.getSubject().includes(s)
+    const i = MarketSurveyModel
+    if(i.getSubject(surveyRequest).length <= 0) return true
+    return i.getSubject(survey).some(
+      s => i.getSubject(surveyRequest).includes(s)
     )
   }
 
@@ -45,9 +53,10 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByGender(survey, surveyRequest) {
-    if(!surveyRequest.getGender()) return true
-    survey.getGender().some(
-      s => surveyRequest.getGender().includes(s)
+    const i = MarketSurveyModel
+    if(i.getGender(surveyRequest).length <= 0) return true
+    return i.getGender(survey).some(
+      s => i.getGender(surveyRequest).includes(s)
     )
   }
   
@@ -59,13 +68,14 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByAge(survey, surveyRequest) {
-    if(!surveyRequest.getAge()) return true
-    if(surveyRequest.getAge().length < 2) {
-      return survey.getAge()[0] == surveyRequest.getAge()[0]
+    const i = MarketSurveyModel
+    if(i.getAge(surveyRequest).length <= 0) return true
+    if(i.getAge(surveyRequest).length < 2) {
+      return i.getAge(survey)[0] == i.getAge(surveyRequest)[0]
     } else {
       return (
-        survey.getAge()[0] >= surveyRequest.getAge()[0]
-        && survey.getAge()[0] <= surveyRequest.getAge()[1]
+        i.getAge(survey)[0] >= i.getAge(surveyRequest)[0]
+        && i.getAge(survey)[0] <= i.getAge(surveyRequest)[1]
       )
     }
   }
@@ -78,9 +88,10 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByCurrency(survey, surveyRequest) {
-    if(!surveyRequest.getCurrency()) return true
-    survey.getCurrency().some(
-      s => survey.getCurrency().includes(s)
+    const i = MarketSurveyModel
+    if(i.getCurrency(surveyRequest).length <= 0) return true
+    return i.getCurrency(survey).some(
+      s => i.getCurrency(surveyRequest).includes(s)
     )
   }
 
@@ -92,13 +103,14 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByIncome(survey, surveyRequest) {
-    if(!surveyRequest.getIncome()) return true
-    if(surveyRequest.getIncome().length < 2) {
-      return survey.getIncome()[0] == surveyRequest.getIncome()[0]
+    const i = MarketSurveyModel
+    if(i.getIncome(surveyRequest).length <= 0) return true
+    if(i.getIncome(surveyRequest).length < 2) {
+      return i.getIncome(survey)[0] == i.getIncome(surveyRequest)[0]
     } else {
       return (
-        survey.getIncome()[0] >= surveyRequest.getIncome()[0]
-        && survey.getIncome()[0] <= surveyRequest.getIncome()[1]
+        i.getIncome(survey)[0] >= i.getIncome(surveyRequest)[0]
+        && i.getIncome(survey)[0] <= i.getIncome(surveyRequest)[1]
       )
     }
   }
@@ -111,9 +123,10 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByCountry(survey, surveyRequest) {
-    if(!surveyRequest.getCountry()) return true
-    survey.getCountry().some(
-      s => survey.getCountry().includes(s)
+    const i = MarketSurveyModel
+    if(i.getCountry(surveyRequest).length <= 0) return true
+    return i.getCountry(survey).some(
+      s => i.getCountry(surveyRequest).includes(s)
     )
   }
 
@@ -125,9 +138,10 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByFrequency(survey, surveyRequest) {
-    if(!surveyRequest.getFrequency()) return true
-    survey.getFrequency().some(
-      s => survey.getFrequency().includes(s)
+    const i = MarketSurveyModel
+    if(i.getFrequency(surveyRequest).length <= 0) return true
+    return i.getFrequency(survey).some(
+      s => i.getFrequency(surveyRequest).includes(s)
     )
   }
 
@@ -139,14 +153,16 @@ class MarketSurveyController {
    * @returns {Boolean}
    */
   static filterSurveyByChannel(survey, surveyRequest) {
-    if(!surveyRequest.getChannel()) return true
-    survey.getChannel().some(
-      s => survey.getChannel().includes(s)
+    const i = MarketSurveyModel
+    if(i.getChannel(surveyRequest).length <= 0) return true
+    return i.getChannel(survey).some(
+      s => i.getChannel(surveyRequest).includes(s)
     )
   }
 
   /**
-   * 
+   * Returns the available survey list.
+   * @return {MarketSurveyModel[]}
    */
   static surveyList() {
     return LOADED_SURVEYS.surveys
@@ -155,18 +171,35 @@ class MarketSurveyController {
   /**
    * Save the survey data into the surveys file.
    */
-  static saveData() {
-    // TODO
+  static saveData(dataObject) {
+    fh.writeToDatafile(dataObject)
   }
 
   /**
    * Load the available survey data from the surveys file.
-   * @param {MarketSurveyModel[]} surveyList 
+   * @return {SurveyContainer}
    */
-  static loadData(surveyList) {
-    // TODO
+  static loadData() {
+    const inner = MarketSurveyController
+    LOADED_SURVEYS = inner.dataToObject(fh.readDataFile())
+  }
 
-    return surveyList
+  /**
+   * Converts raw parsed data into a typed data objects.
+   * @param   {*} data 
+   * @return  {SurveyContainer}
+   */
+  static dataToObject(data) {
+    const container = new SurveyContainer()
+    data.surveys.forEach(s => {
+      const prv = ProviderModel.construct(s.provider)
+      const rqt = RequesterModel.construct(s.requester)
+      const cnt = SurveyContentModel.construct(s.survey)
+      const scp = SubscriptionModel.construct(s.subscription)
+      const mod = new MarketSurveyModel(rqt, prv, cnt, scp)
+      container.surveys.push(mod)
+    })
+    return container
   }
 }
 

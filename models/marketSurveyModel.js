@@ -7,59 +7,43 @@ const SubscriptionModel  = require('./subscriptionModel')
  * Base model for Market Surveys
  */
 class MarketSurveyModel {
-  constructor() { 
-    this._content = {
-      requester: new RequesterModel(),
-      provider: new ProviderModel(),
-      survey: new SurveyContentModel(),
-      subscription: new SubscriptionModel()
-    }
+  constructor(requester, provider, survey, subscription) { 
+    this.requester    = requester    || new RequesterModel()
+    this.provider     = provider     || new ProviderModel()
+    this.survey       = survey       || new SurveyContentModel()
+    this.subscription = subscription || new SubscriptionModel()
   }
 
-  /**
-   * Public properties.
-   */
-  get content() {
-    return this._content
+  static getSubject(obj) {
+    return obj.survey.subject
   }
 
-  set content(content) {
-    this._content = content
+  static getGender(obj) {
+    return obj.survey.target.gender
   }
 
-  /**
-   * Public accessors to ease the work
-   */
-  getSubject() {
-    return this.content.survey.subject
+  static getAge(obj) {
+    return obj.survey.target.age
   }
 
-  getGender() {
-    return this.content.survey.target.gender
+  static getCurrency(obj) {
+    return obj.survey.target.income.currency
   }
 
-  getAge() {
-    return this.content.survey.target.age
+  static getIncome(obj) {
+    return obj.survey.target.income.value
   }
 
-  getCurrency() {
-    return this.content.survey.target.income.currency
+  static getCountry(obj) {
+    return obj.survey.country
   }
 
-  getIncome() {
-    return this.content.survey.target.income.value
+  static getFrequency(obj) {
+    return obj.subscription.frequency
   }
 
-  getCountry() {
-    return this.content.survey.country
-  }
-
-  getFrequency() {
-    return this.content.subscription.frequency
-  }
-
-  getChannel() {
-    return this.content.subscription.channel
+  static getChannel(obj) {
+    return obj.subscription.channel
   }
 }
 
