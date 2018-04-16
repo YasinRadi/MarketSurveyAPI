@@ -1,0 +1,434 @@
+{
+  "surveys": [
+    {
+      "requester": {
+        "id": "R1",
+        "name": "Rone"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Sone"
+        ],
+        "target": {
+          "gender": [
+            "M"
+          ],
+          "age": [
+            "23"
+          ],
+          "income": {
+            "currency": [
+              "EUR",
+              "USD"
+            ],
+            "value": [
+              "23000"
+            ]
+          }
+        },
+        "country": [
+          "ES"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "daily"
+        ],
+        "channel": [
+          "ftp",
+          "mail"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R2",
+        "name": "Rtwo"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Stwo"
+        ],
+        "target": {
+          "gender": [
+            "F"
+          ],
+          "age": [
+            "20"
+          ],
+          "income": {
+            "currency": [
+              "EUR"
+            ],
+            "value": [
+              "26000"
+            ]
+          }
+        },
+        "country": [
+          "ES"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "weekly"
+        ],
+        "channel": [
+          "mail"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R3",
+        "name": "Rthree"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Stwo"
+        ],
+        "target": {
+          "gender": [
+            "F"
+          ],
+          "age": [
+            "30"
+          ],
+          "income": {
+            "currency": [
+              "YEN"
+            ],
+            "value": [
+              "36000"
+            ]
+          }
+        },
+        "country": [
+          "JP"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "monthly",
+          "daily"
+        ],
+        "channel": [
+          "mail",
+          "ftp"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R4",
+        "name": "Rfour"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Sone"
+        ],
+        "target": {
+          "gender": [
+            "M"
+          ],
+          "age": [
+            "45"
+          ],
+          "income": {
+            "currency": [
+              "GBP"
+            ],
+            "value": [
+              "25000"
+            ]
+          }
+        },
+        "country": [
+          "UK"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "daily"
+        ],
+        "channel": [
+          "ftp"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R5",
+        "name": "Rfive"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Sone"
+        ],
+        "target": {
+          "gender": [
+            "M"
+          ],
+          "age": [
+            "19"
+          ],
+          "income": {
+            "currency": [
+              "USD"
+            ],
+            "value": [
+              "36000"
+            ]
+          }
+        },
+        "country": [
+          "US"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "weekly"
+        ],
+        "channel": [
+          "mail",
+          "ftp"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R6",
+        "name": "Rsix"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Stwo"
+        ],
+        "target": {
+          "gender": [
+            "F"
+          ],
+          "age": [
+            "28"
+          ],
+          "income": {
+            "currency": [
+              "EUR"
+            ],
+            "value": [
+              "32000"
+            ]
+          }
+        },
+        "country": [
+          "FR"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "monthly"
+        ],
+        "channel": [
+          "mail"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R7",
+        "name": "Rseven"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Stwo"
+        ],
+        "target": {
+          "gender": [
+            "M"
+          ],
+          "age": [
+            "42"
+          ],
+          "income": {
+            "currency": [
+              "EUR"
+            ],
+            "value": [
+              "46000"
+            ]
+          }
+        },
+        "country": [
+          "DE"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "weekly"
+        ],
+        "channel": [
+          "api",
+          "postal"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R8",
+        "name": "Reight"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Sone"
+        ],
+        "target": {
+          "gender": [
+            "F"
+          ],
+          "age": [
+            "51"
+          ],
+          "income": {
+            "currency": [
+              "USD"
+            ],
+            "value": [
+              "86000"
+            ]
+          }
+        },
+        "country": [
+          "US"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "monthly",
+          "daily"
+        ],
+        "channel": [
+          "ftp",
+          "api",
+          "postal"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R9",
+        "name": "Rnine"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Stwo"
+        ],
+        "target": {
+          "gender": [
+            "M"
+          ],
+          "age": [
+            "18"
+          ],
+          "income": {
+            "currency": [
+              "CHF"
+            ],
+            "value": [
+              "66000"
+            ]
+          }
+        },
+        "country": [
+          "CH"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "monthly"
+        ],
+        "channel": [
+          "mail",
+          "postal"
+        ]
+      }
+    },
+    {
+      "requester": {
+        "id": "R10",
+        "name": "Rten"
+      },
+      "provider": {
+        "id": "P",
+        "name": "Pro"
+      },
+      "survey": {
+        "subject": [
+          "Sone"
+        ],
+        "target": {
+          "gender": [
+            "F"
+          ],
+          "age": [
+            "25"
+          ],
+          "income": {
+            "currency": [
+              "MXN"
+            ],
+            "value": [
+              "41000"
+            ]
+          }
+        },
+        "country": [
+          "MX"
+        ]
+      },
+      "subscription": {
+        "frequency": [
+          "daily"
+        ],
+        "channel": [
+          "postal"
+        ]
+      }
+    }
+  ]
+}
