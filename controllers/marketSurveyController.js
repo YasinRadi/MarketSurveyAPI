@@ -161,6 +161,32 @@ class MarketSurveyController {
   }
 
   /**
+   * Processes a request data object and returns the data requested if available.
+   * @param   {JSON} request 
+   * @return  {MarketSurveyModel || {}}
+   */
+  static processRequest(request) {
+    const inner = MarketSurveyController
+    const s = request
+    let surveyRequest = {}
+    try {
+      const prv = ProviderModel.construct(s.provider)
+      const rqt = RequesterModel.construct(s.requester)
+      const cnt = SurveyContentModel.construct(s.survey)
+      const scp = SubscriptionModel.construct(s.subscription)
+      surveyRequest = new MarketSurveyModel(rqt, prv, cnt, scp)
+      if(inner.surveyList().length < 1) {
+        inner.loadData()
+      }
+
+      return inner.filterSurveys(inner.surveyList(), surveyRequest)
+    } catch(err) {
+      //console.log(err)
+      return {}
+    }
+  }
+
+  /**
    * Returns the available survey list.
    * @return {MarketSurveyModel[]}
    */
