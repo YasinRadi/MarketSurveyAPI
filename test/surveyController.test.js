@@ -109,4 +109,22 @@ const MarketSurveyModel  = require('../models/marketSurveyModel')
 
    })
 
+   /**
+    * 
+    * FILE HANDLING CONTENT
+    * 
+    */
+   describe('File data handling', function() {
+
+    describe('surveyList', function() {
+      it('Returns array', function() {
+        assert(
+          Array,
+          typeof(msController.surveyList())
+        )
+      })
+    })
+
+   })
+
  })
