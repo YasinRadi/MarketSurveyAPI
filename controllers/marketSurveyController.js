@@ -1,10 +1,10 @@
+const FileHandler = require('../lib/fileHandler')
 const SurveyContainer   = require('../models/surveyContainer')
 const MarketSurveyModel = require('../models/marketSurveyModel')
 const ProviderModel     = require('../models/providerModel')
 const RequesterModel    = require('../models/requesterModel')
 const SubscriptionModel = require('../models/subscriptionModel')
 const SurveyContentModel = require('../models/surveyContentModel')
-const fh = require('../lib/fileHandler')
 let LOADED_SURVEYS  = new SurveyContainer()
 
 class MarketSurveyController {
@@ -181,7 +181,7 @@ class MarketSurveyController {
 
       return inner.filterSurveys(inner.surveyList(), surveyRequest)
     } catch(err) {
-      //console.log(err)
+      console.log(err)
       return {}
     }
   }
@@ -198,7 +198,7 @@ class MarketSurveyController {
    * Save the survey data into the surveys file.
    */
   static saveData(dataObject) {
-    fh.writeToDatafile(dataObject)
+    FileHandler.writeToDatafile(dataObject)
   }
 
   /**
@@ -207,7 +207,7 @@ class MarketSurveyController {
    */
   static loadData() {
     const inner = MarketSurveyController
-    LOADED_SURVEYS = inner.dataToObject(fh.readDataFile())
+    LOADED_SURVEYS = inner.dataToObject(FileHandler.readDataFile())
   }
 
   /**
