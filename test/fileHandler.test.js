@@ -1,5 +1,6 @@
 const assert = require('assert')
 const fh     = require('../lib/fileHandler')
+const testPath = "../db/testWriteFile.json"
 
 /**
  * 
@@ -13,14 +14,21 @@ const fh     = require('../lib/fileHandler')
     it('Returns boolean', function() {
       assert(
         Boolean,
-        typeof(fh.writeToDatafile())
+        typeof(fh.writeToDatafile(null, testPath))
       )
+    })
+
+    it('Returns false', function() {
+      assert.equal(fh.writeToDatafile(null, testPath), false)
     })
   })
 
   describe('readDataFile', function() {
-    it('Returns null', function() {
-      assert.equal(fh.readDataFile(), null)
+    it('Returns object', function() {
+      assert(
+        Object,
+        typeof(fh.readDataFile())
+      )
     })
   })
 

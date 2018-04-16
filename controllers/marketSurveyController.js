@@ -186,7 +186,7 @@ class MarketSurveyController {
 
   /**
    * Converts raw parsed data into a typed data objects.
-   * @param   {*} data 
+   * @param   {Object} data 
    * @return  {SurveyContainer}
    */
   static dataToObject(data) {
