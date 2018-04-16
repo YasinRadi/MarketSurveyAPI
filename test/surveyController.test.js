@@ -1,6 +1,10 @@
 const assert = require('assert')
+const request = require('supertest')
+const server  = request('http://localhost:3000')
 const msController = require('../controllers/marketSurveyController')
-const MarketSurveyModel  = require('../models/marketSurveyModel')
+const MarketSurveyModel = require('../models/marketSurveyModel')
+const SurveyContainer   = require('../models/surveyContainer')
+
 
 /**
  * 
@@ -127,4 +131,61 @@ const MarketSurveyModel  = require('../models/marketSurveyModel')
 
    })
 
+   /**
+    * 
+    * 
+    * REQUEST PROCESSING
+    * 
+    */
+   describe('Request processing', function() {
+    
+    describe('processRequest', function() {
+      it('Returns empty object', function() {
+        assert({}, msController.processRequest(null))
+      })
+
+      it('Should return all surveys.', function(done) {
+        const requestObject = new MarketSurveyModel()
+    
+        server
+          .get('/surveys')
+          .send(requestObject)
+          .expect(200)
+          .end(function(err, res) {
+            //console.log(res.body) // UNCOMMENT TO SEE RESULT
+            //console.log(res.body[0]) // UNCOMMENT TO SEE FIRST RESULT
+            assert.equal('Array', res.body.constructor.name)
+            done()
+          })
+      })
+
+    })
+
+    describe('dataToObject', function() {
+
+      it('Returns object', function(){
+        assert(
+          'object',
+          typeof(msController.dataToObject(new SurveyContainer()))
+        )
+      })
+
+      it('Returns SurveyContainer object type', function() {
+        assert(
+          SurveyContainer.name,
+          msController.dataToObject(new SurveyContainer()).constructor.name
+        )
+      })
+
+    })
+
+    describe('loadData', function() {
+
+      it('Loads data correctly (if there\'s any.', function() {
+        assert(msController.surveyList(), [])
+        msController.loadData()
+        assert(msController.surveyList().length > 0, true)
+      })
+    })
+   })
  })
